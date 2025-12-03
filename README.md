@@ -92,14 +92,60 @@ print(f"Decision: {result['decision']}")
 
 ## 📝 Important Notes
 
-### Files Not in Repository
+### Large Files Handling
 
-Due to GitHub file size limits, the following are **NOT** included in the repository:
+Due to GitHub's file size limits (100MB per file, 1GB repository warning), large files are currently excluded via `.gitignore`. You have several options:
+
+#### Option 1: Use Git LFS (Recommended for Large Files)
+
+Git LFS (Large File Storage) allows you to track large files without bloating your repository:
+
+```bash
+# Install Git LFS (if not already installed)
+git lfs install
+
+# Track large file types
+git lfs track "*.joblib"
+git lfs track "*.safetensors"
+git lfs track "*.bin"
+git lfs track "*.db"
+git lfs track "*.pkl"
+
+# Add the .gitattributes file
+git add .gitattributes
+
+# Add your large files
+git add 1-Data/ED_Simulated_Database_Fixed.db
+git add 3-Model_Training/**/*.joblib
+git add 3-Model_Training/**/*.safetensors
+
+# Commit and push
+git commit -m "Add large files via Git LFS"
+git push origin main
+```
+
+**Note**: Git LFS has storage quotas on GitHub (1GB free, then paid). Check [GitHub LFS pricing](https://docs.github.com/en/billing/managing-billing-for-git-large-file-storage/about-billing-for-git-large-file-storage).
+
+#### Option 2: External Hosting (Recommended for Very Large Files)
+
+For files > 100MB or to avoid LFS costs, host files externally:
+
+1. **Google Drive / Dropbox**: Upload files and share download links
+2. **Cloud Storage**: Use AWS S3, Google Cloud Storage, or Azure Blob Storage
+3. **Hugging Face Hub**: For model files, use [Hugging Face Model Hub](https://huggingface.co/models)
+
+Then document download links in `SETUP_GUIDE.md` or a `LARGE_FILES.md` file.
+
+#### Option 3: Manual Addition (Current Approach)
+
+Currently, large files are excluded. Users must add them manually after cloning:
 
 - **Database files** (`.db`, `.sqlite`): Place in `1-Data/`
 - **Model files** (`.joblib`, `.pkl`, `.safetensors`, `.bin`): Place in `3-Model_Training/`
 - **Large CSV files**: Place in `1-Data/`
 - **Log files** (`.jsonl`): Generated at runtime in `4-LangGraph/4.0-LangGraph_Logs/`
+
+See `SETUP_GUIDE.md` for detailed instructions.
 
 ### Directory Structure
 
@@ -132,7 +178,7 @@ Configuration is managed in `er_triage_workflow/config/settings.py`. You can:
 
 ## 📚 Documentation
 
-- **Package Structure**: See `er_triage_workflow/STRUCTURE_SUMMARY.md`
+- **Setup Guide**: See `SETUP_GUIDE.md` for post-clone setup instructions
 - **Conversion Guide**: See `er_triage_workflow/CONVERSION_GUIDE.md`
 - **Extraction Status**: See `er_triage_workflow/EXTRACTION_STATUS.md`
 - **Quick Start**: See `er_triage_workflow/QUICK_START.md`
