@@ -12,7 +12,7 @@ cd Capstone_Organized
 ## Step 2: Set Up Python Environment
 
 ```bash
-cd er_triage_workflow
+cd er_agentic_workflow
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
@@ -71,12 +71,12 @@ If your repository is in a different location, set the `BASE_PATH` environment v
 export BASE_PATH="/path/to/Capstone_Organized"
 ```
 
-Or modify `er_triage_workflow/config/settings.py` directly.
+Or modify `er_agentic_workflow/config/settings.py` directly.
 
 ## Step 6: Test Installation
 
 ```bash
-cd er_triage_workflow
+cd er_agentic_workflow
 python -c "from config import get_config; cfg = get_config(); print('Config loaded:', cfg.base_path)"
 ```
 
@@ -95,6 +95,6 @@ python -c "from config import get_config; cfg = get_config(); print('Config load
 - Verify the directory structure matches
 
 ### Import Errors
-- Make sure you're in the `er_triage_workflow` directory or have installed the package
-- Try: `pip install -e .` from the `er_triage_workflow` directory
+- Make sure you're in the `er_agentic_workflow` directory or have installed the package
+- Try: `pip install -e .` from the `er_agentic_workflow` directory
 

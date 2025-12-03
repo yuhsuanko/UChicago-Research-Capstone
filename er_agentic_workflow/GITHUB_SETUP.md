@@ -4,8 +4,8 @@
 
 1. Go to [GitHub](https://github.com) and sign in
 2. Click the "+" icon in the top right → "New repository"
-3. Repository name: `er_triage_workflow` (or your preferred name)
-4. Description: "LangGraph-based workflow for ER triage admission decisions"
+3. Repository name: `er-admission-agentic-ai` (or your preferred name)
+4. Description: "ER Admission Agentic AI - LangGraph-based system for ER admission decision-making"
 5. Choose visibility (Public or Private)
 6. **DO NOT** initialize with README, .gitignore, or license (we already have these)
 7. Click "Create repository"
@@ -17,7 +17,7 @@ After creating the repository, GitHub will show you the repository URL. Use one 
 ### If using HTTPS:
 ```bash
 cd "/Users/yuhsuanko/Desktop/UChicago/UChicago_Q4/Capstone II/Capstone_Organized"
-git remote add origin https://github.com/YOUR_USERNAME/er_triage_workflow.git
+git remote add origin https://github.com/YOUR_USERNAME/er-admission-agentic-ai.git
 git branch -M main
 git push -u origin main
 ```
@@ -25,7 +25,7 @@ git push -u origin main
 ### If using SSH:
 ```bash
 cd "/Users/yuhsuanko/Desktop/UChicago/UChicago_Q4/Capstone II/Capstone_Organized"
-git remote add origin git@github.com:YOUR_USERNAME/er_triage_workflow.git
+git remote add origin git@github.com:YOUR_USERNAME/er-admission-agentic-ai.git
 git branch -M main
 git push -u origin main
 ```
@@ -52,7 +52,7 @@ If you want the repository to contain only the `er_triage_workflow` folder (not 
    git init
    git add .
    git commit -m "Initial commit: ER Triage Workflow package"
-   git remote add origin https://github.com/YOUR_USERNAME/er_triage_workflow.git
+   git remote add origin https://github.com/YOUR_USERNAME/er-admission-agentic-ai.git
    git push -u origin main
    ```
 

@@ -23,7 +23,7 @@ Capstone_Organized/
 │   ├── 4.0-LangGraph_Logs/        # Execution logs
 │   └── 4.1.4-LangGraph_Agent_with_Reasoning-Optimal_Threshold_Finder.ipynb
 ├── 5-Evaluation_Reports/          # Evaluation results
-└── er_triage_workflow/             # Python package (main code)
+└── er_agentic_workflow/             # Python package (main code)
     ├── config/                     # Configuration
     ├── src/                        # Source code
     │   ├── database/              # Database queries
@@ -58,7 +58,7 @@ Capstone_Organized/
 
 2. Set up Python environment:
    ```bash
-   cd er_triage_workflow
+   cd er_agentic_workflow
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    pip install -r requirements.txt
@@ -74,14 +74,14 @@ Capstone_Organized/
 ### Running the Workflow
 
 ```bash
-cd er_triage_workflow
+cd er_agentic_workflow
 python -m src.main
 ```
 
 Or use the workflow programmatically:
 
 ```python
-from er_triage_workflow.src.main import run_simulation
+from er_agentic_workflow.src.main import run_simulation
 
 result = run_simulation(
     visit_id=1,
@@ -170,7 +170,7 @@ BASE_PATH/
 
 ## Configuration
 
-Configuration is managed in `er_triage_workflow/config/settings.py`. You can:
+Configuration is managed in `er_agentic_workflow/config/settings.py`. You can:
 
 1. Set `BASE_PATH` environment variable
 2. Modify paths in the config file
@@ -179,13 +179,13 @@ Configuration is managed in `er_triage_workflow/config/settings.py`. You can:
 ## Documentation
 
 - Setup Guide: See `SETUP_GUIDE.md` for post-clone setup instructions
-- Conversion Guide: See `er_triage_workflow/CONVERSION_GUIDE.md`
-- Extraction Status: See `er_triage_workflow/EXTRACTION_STATUS.md`
-- Quick Start: See `er_triage_workflow/QUICK_START.md`
+- Conversion Guide: See `er_agentic_workflow/CONVERSION_GUIDE.md`
+- Extraction Status: See `er_agentic_workflow/EXTRACTION_STATUS.md`
+- Quick Start: See `er_agentic_workflow/QUICK_START.md`
 
 ## Evaluation
 
-The evaluation script is in the notebook `4-LangGraph/4.1.4-LangGraph_Agent_with_Reasoning-Optimal_Threshold_Finder.ipynb` (cells 38-48). This will be extracted to `er_triage_workflow/src/evaluation/evaluate.py` in a future update.
+The evaluation script is in the notebook `4-LangGraph/4.1.4-LangGraph_Agent_with_Reasoning-Optimal_Threshold_Finder.ipynb` (cells 38-48). This will be extracted to `er_agentic_workflow/src/evaluation/evaluate.py` in a future update.
 
 ## License
 
