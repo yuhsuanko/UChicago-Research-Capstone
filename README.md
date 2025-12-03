@@ -2,7 +2,7 @@
 
 A comprehensive LangGraph-based workflow for Emergency Room (ER) triage admission decisions, integrating traditional Machine Learning models, Large Language Model (LLM) classifiers, and a fusion agent with human-in-the-loop (HITL) capabilities.
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 Capstone_Organized/
@@ -13,17 +13,17 @@ Capstone_Organized/
 ├── 3-Model_Training/               # Model training artifacts
 │   ├── 3.1-Traditional_ML/
 │   │   └── 3.1.0-Traditional_ML_Artifacts/
-│   │       ├── gb_model.joblib          # ⚠️ Not in repo (too large)
-│   │       ├── ml_preprocessor.joblib   # ⚠️ Not in repo (too large)
-│   │       └── ml_feature_columns.json  # ✅ Included
+│   │       ├── gb_model.joblib          # Not in repo (too large)
+│   │       ├── ml_preprocessor.joblib   # Not in repo (too large)
+│   │       └── ml_feature_columns.json  # Included
 │   └── 3.2-LLM_Classification/
 │       └── 3.2.0-FineTune_OpenBioLLM/
-│           └── OpenBioLLM_Final/        # ⚠️ Not in repo (too large)
+│           └── OpenBioLLM_Final/        # Not in repo (too large)
 ├── 4-LangGraph/                    # LangGraph workflow notebooks
 │   ├── 4.0-LangGraph_Logs/        # Execution logs
 │   └── 4.1.4-LangGraph_Agent_with_Reasoning-Optimal_Threshold_Finder.ipynb
 ├── 5-Evaluation_Reports/          # Evaluation results
-└── er_triage_workflow/             # ✅ Python package (main code)
+└── er_triage_workflow/             # Python package (main code)
     ├── config/                     # Configuration
     ├── src/                        # Source code
     │   ├── database/              # Database queries
@@ -36,17 +36,17 @@ Capstone_Organized/
     └── requirements.txt           # Dependencies
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
-1. **Python 3.9+**
-2. **Model Artifacts**: You need to obtain the trained models separately (they're too large for Git):
+1. Python 3.9 or higher
+2. Model Artifacts: You need to obtain the trained models separately (they're too large for Git):
    - ML Model: `3-Model_Training/3.1-Traditional_ML/3.1.0-Traditional_ML_Artifacts/gb_model.joblib`
    - ML Preprocessor: `3-Model_Training/3.1-Traditional_ML/3.1.0-Traditional_ML_Artifacts/ml_preprocessor.joblib`
    - LLM Model: `3-Model_Training/3.2-LLM_Classification/3.2.0-FineTune_OpenBioLLM/OpenBioLLM_Final/`
 
-3. **Database**: `1-Data/ED_Simulated_Database_Fixed.db` (not in repo due to size)
+3. Database: `1-Data/ED_Simulated_Database_Fixed.db` (not in repo due to size)
 
 ### Installation
 
@@ -90,7 +90,7 @@ result = run_simulation(
 print(f"Decision: {result['decision']}")
 ```
 
-## 📝 Important Notes
+## Important Notes
 
 ### Large Files Handling
 
@@ -124,15 +124,15 @@ git commit -m "Add large files via Git LFS"
 git push origin main
 ```
 
-**Note**: Git LFS has storage quotas on GitHub (1GB free, then paid). Check [GitHub LFS pricing](https://docs.github.com/en/billing/managing-billing-for-git-large-file-storage/about-billing-for-git-large-file-storage).
+Note: Git LFS has storage quotas on GitHub (1GB free, then paid). Check [GitHub LFS pricing](https://docs.github.com/en/billing/managing-billing-for-git-large-file-storage/about-billing-for-git-large-file-storage).
 
 #### Option 2: External Hosting (Recommended for Very Large Files)
 
-For files > 100MB or to avoid LFS costs, host files externally:
+For files larger than 100MB or to avoid LFS costs, host files externally:
 
-1. **Google Drive / Dropbox**: Upload files and share download links
-2. **Cloud Storage**: Use AWS S3, Google Cloud Storage, or Azure Blob Storage
-3. **Hugging Face Hub**: For model files, use [Hugging Face Model Hub](https://huggingface.co/models)
+1. Google Drive / Dropbox: Upload files and share download links
+2. Cloud Storage: Use AWS S3, Google Cloud Storage, or Azure Blob Storage
+3. Hugging Face Hub: For model files, use [Hugging Face Model Hub](https://huggingface.co/models)
 
 Then document download links in `SETUP_GUIDE.md` or a `LARGE_FILES.md` file.
 
@@ -140,10 +140,10 @@ Then document download links in `SETUP_GUIDE.md` or a `LARGE_FILES.md` file.
 
 Currently, large files are excluded. Users must add them manually after cloning:
 
-- **Database files** (`.db`, `.sqlite`): Place in `1-Data/`
-- **Model files** (`.joblib`, `.pkl`, `.safetensors`, `.bin`): Place in `3-Model_Training/`
-- **Large CSV files**: Place in `1-Data/`
-- **Log files** (`.jsonl`): Generated at runtime in `4-LangGraph/4.0-LangGraph_Logs/`
+- Database files (`.db`, `.sqlite`): Place in `1-Data/`
+- Model files (`.joblib`, `.pkl`, `.safetensors`, `.bin`): Place in `3-Model_Training/`
+- Large CSV files: Place in `1-Data/`
+- Log files (`.jsonl`): Generated at runtime in `4-LangGraph/4.0-LangGraph_Logs/`
 
 See `SETUP_GUIDE.md` for detailed instructions.
 
@@ -168,7 +168,7 @@ BASE_PATH/
     └── 4.0-LangGraph_Logs/
 ```
 
-## 🔧 Configuration
+## Configuration
 
 Configuration is managed in `er_triage_workflow/config/settings.py`. You can:
 
@@ -176,21 +176,21 @@ Configuration is managed in `er_triage_workflow/config/settings.py`. You can:
 2. Modify paths in the config file
 3. Use `Config.from_env(base_path="/your/path")` programmatically
 
-## 📚 Documentation
+## Documentation
 
-- **Setup Guide**: See `SETUP_GUIDE.md` for post-clone setup instructions
-- **Conversion Guide**: See `er_triage_workflow/CONVERSION_GUIDE.md`
-- **Extraction Status**: See `er_triage_workflow/EXTRACTION_STATUS.md`
-- **Quick Start**: See `er_triage_workflow/QUICK_START.md`
+- Setup Guide: See `SETUP_GUIDE.md` for post-clone setup instructions
+- Conversion Guide: See `er_triage_workflow/CONVERSION_GUIDE.md`
+- Extraction Status: See `er_triage_workflow/EXTRACTION_STATUS.md`
+- Quick Start: See `er_triage_workflow/QUICK_START.md`
 
-## 🧪 Evaluation
+## Evaluation
 
 The evaluation script is in the notebook `4-LangGraph/4.1.4-LangGraph_Agent_with_Reasoning-Optimal_Threshold_Finder.ipynb` (cells 38-48). This will be extracted to `er_triage_workflow/src/evaluation/evaluate.py` in a future update.
 
-## 📄 License
+## License
 
 [Add your license here]
 
-## 👥 Contributors
+## Contributors
 
 [Add contributors here]
