@@ -1,0 +1,98 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Model artifacts and large files
+*.joblib
+*.pkl
+*.h5
+*.hdf5
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.dat
+*.bin
+*.safetensors.index.json
+
+# Data files (uncomment if you don't want to track data)
+# *.csv
+# *.db
+# *.sqlite
+# *.xlsx
+
+# Logs
+*.log
+*.log.*
+trace_log.jsonl
+
+# Model checkpoints (uncomment if you don't want to track checkpoints)
+# OpenBioLLM_Checkpoints/
+# OpenBioLLM_Offload/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
