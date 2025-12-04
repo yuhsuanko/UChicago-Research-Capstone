@@ -100,3 +100,6 @@ Thumbs.db
 !**/3.1.0-Traditional_ML_Artifacts/
 !**/3.2.0-FineTune_OpenBioLLM/
 !**/3.2.0-FineTune_OpenBioLLM/OpenBioLLM_Final/
+
+# Local development - keep er_agentic_workflow local only
+er_agentic_workflow/
