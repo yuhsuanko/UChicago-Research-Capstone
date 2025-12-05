@@ -31,10 +31,10 @@ Our results show that agentic reasoning significantly improves recall, F1 score,
 ├── 2-PreWorkflow_Dataset_Prep/  # Notebooks for data cleaning & integration
 ├── 3-Model_Training/            # ML and LLM training artifacts (not all uploaded)
 │   ├── 3.1-Traditional_ML/      # Gradient Boosting classifier
-│   └── 3.2-LLM_Classification/  # Fine-tuned OpenBioLLM notebooks
+│   └── 3.2-LLM_Classification/  # Fine-tuned OpenBioLLM
 ├── 4-LangGraph/                 # Agentic workflow notebooks
-│   ├── 4.0-LangGraph_Logs/      # Execution traces
-│   └── 4.1-LangGraph_Agent_with_Reasoning.ipynb
+│   ├── 4.1.2-LangGraph_Agent.ipynb
+│   └── 4.1.4-LangGraph_Agent_with_Reasoning-Optimal_Threshold_Finder.ipynb
 ├── 5-Evaluation_Reports/        # Confusion matrices, metrics, plots
 └── README.md                    # (this file)
 ```
