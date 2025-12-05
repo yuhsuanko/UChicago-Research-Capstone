@@ -64,10 +64,10 @@ A multi-stage agent graph is constructed using **LangGraph**, enabling controlle
 ### Workflow Summary
 
 1. **Severity Gate** - custimized clinical rules trigger auto-admission.  
-2. **Parallel Model Execution** — ML classifier, LLM classifier, and human context operate simultaneously.  
-3. **Fusion Module** — integrates outputs into a unified probability + rationale.  
-4. **Confidence Check** — low-confidence predictions escalate to human review.  
-5. **Finalization** — outputs decision, probability, rationale, and trace log.  
+2. **Parallel Model Execution** - ML classifier, LLM classifier, and human context operate simultaneously.  
+3. **Fusion Module** - integrates outputs into a unified probability + rationale.  
+4. **Confidence Check** - low-confidence predictions escalate to human review.  
+5. **Finalization** - outputs decision, probability, rationale, and trace log.  
 
 ---
 
