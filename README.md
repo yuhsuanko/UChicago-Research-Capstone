@@ -1,196 +1,136 @@
-# ER Admission Agentic AI
+# Integrating Generative AI and Agentic Reasoning for Predictive Decision Support in Emergency Departments
 
-An agentic AI system for Emergency Room (ER) admission decision-making, integrating traditional Machine Learning models, Large Language Model (LLM) classifiers, and a fusion agent with human-in-the-loop (HITL) capabilities. Built with LangGraph for orchestration and reasoning.
+### University of Chicago · MS Applied Data Science Research Capstone
 
-## Repository Structure
+This repository contains the research artifacts, experiments, and evaluation notebooks for our study on **agentic AI reasoning for real-time Emergency Department (ED) admission prediction**.  
+Our work explores how **traditional ML models**, **fine-tuned biomedical LLMs**, and **human-in-the-loop (HITL) feedback** can be integrated via an **agent-based architecture** to improve early triage decision-making.
 
-```
-Capstone_Organized/
-├── 1-Data/                          # Data files
-│   ├── ED_Simulated_Database_Fixed.db
-│   └── ED_Model_Training_Dataset.csv
-├── 2-PreWorkflow_Dataset_Prep/     # Data preparation notebooks
-├── 3-Model_Training/               # Model training artifacts
-│   ├── 3.1-Traditional_ML/
-│   │   └── 3.1.0-Traditional_ML_Artifacts/
-│   │       ├── gb_model.joblib       
-│   │       ├── ml_preprocessor.joblib
-│   │       └── ml_feature_columns.json
-│   └── 3.2-LLM_Classification/
-│       └── 3.2.0-FineTune_OpenBioLLM/
-│           └── OpenBioLLM_Final/        # Not in repo (too large)
-├── 4-LangGraph/                    # LangGraph workflow notebooks
-│   ├── 4.0-LangGraph_Logs/        # Execution logs
-│   └── 4.1.4-LangGraph_Agent_with_Reasoning-Optimal_Threshold_Finder.ipynb
-├── 5-Evaluation_Reports/          # Evaluation results
-└── er_agentic_workflow/             # Python package (main code)
-    ├── config/                     # Configuration
-    ├── src/                        # Source code
-    │   ├── database/              # Database queries
-    │   ├── models/                # Model loading & inference
-    │   ├── utils/                 # Utilities
-    │   ├── workflow/              # LangGraph workflow
-    │   └── main.py                # Entry point
-    ├── tests/                      # Unit tests
-    ├── scripts/                    # Utility scripts
-    └── requirements.txt           # Dependencies
-```
+---
 
-## Quick Start
+## Abstract
 
-### Prerequisites
+Accurate early prediction of Emergency Department (ED) admissions is crucial for effective resource planning, patient safety, and efficient clinical workflow.  
+However, traditional models rely primarily on structured data (e.g., vital signs) or unstructured data, missing key signal combinations in both approaches.  
+Meanwhile, modern LLMs provide strong text-understanding capabilities but lack calibration, traceability, and clinical safety controls.
 
-1. Python 3.9 or higher
-2. Model Artifacts: You need to obtain the trained models separately (they're too large for Git):
-   - ML Model: `3-Model_Training/3.1-Traditional_ML/3.1.0-Traditional_ML_Artifacts/gb_model.joblib`
-   - ML Preprocessor: `3-Model_Training/3.1-Traditional_ML/3.1.0-Traditional_ML_Artifacts/ml_preprocessor.joblib`
-   - LLM Model: `3-Model_Training/3.2-LLM_Classification/3.2.0-FineTune_OpenBioLLM/OpenBioLLM_Final/`
+We propose an **Agentic ED Admission AI System** that fuses:
 
-3. Database: `1-Data/ED_Simulated_Database_Fixed.db` (not in repo due to size)
+- **Structured ML predictions (XGBoost)**  
+- **Fine-tuned biomedical LLM sequence classifier (OpenBioLLM-8B)**  
+- **Real-time human input**  
+- **Agentic orchestration via LangGraph**
 
-### Installation
+Our results show that agentic reasoning significantly improves recall, F1 score, and clinical interpretability compared to standalone ML or LLM models.
 
-1. Clone the repository:
-   ```bash
-   git clone <your-repo-url>
-   cd Capstone_Organized
-   ```
+---
 
-2. Set up Python environment:
-   ```bash
-   cd er_agentic_workflow
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   pip install -r requirements.txt
-   ```
-
-3. Set the base path (if different from default):
-   ```bash
-   export BASE_PATH="/path/to/Capstone_Organized"
-   ```
-
-4. Ensure model artifacts and database are in place (see structure above)
-
-### Running the Workflow
-
-```bash
-cd er_agentic_workflow
-python -m src.main
-```
-
-Or use the workflow programmatically:
-
-```python
-from er_agentic_workflow.src.main import run_simulation
-
-result = run_simulation(
-    visit_id=1,
-    human_prompt="Patient is 70yo, frail, and on chemotherapy."
-)
-print(f"Decision: {result['decision']}")
-```
-
-## Important Notes
-
-### Large Files Handling
-
-Due to GitHub's file size limits (100MB per file, 1GB repository warning), large files are currently excluded via `.gitignore`. You have several options:
-
-#### Option 1: Use Git LFS (Recommended for Large Files)
-
-Git LFS (Large File Storage) allows you to track large files without bloating your repository:
-
-```bash
-# Install Git LFS (if not already installed)
-git lfs install
-
-# Track large file types
-git lfs track "*.joblib"
-git lfs track "*.safetensors"
-git lfs track "*.bin"
-git lfs track "*.db"
-git lfs track "*.pkl"
-
-# Add the .gitattributes file
-git add .gitattributes
-
-# Add your large files
-git add 1-Data/ED_Simulated_Database_Fixed.db
-git add 3-Model_Training/**/*.joblib
-git add 3-Model_Training/**/*.safetensors
-
-# Commit and push
-git commit -m "Add large files via Git LFS"
-git push origin main
-```
-
-Note: Git LFS has storage quotas on GitHub (1GB free, then paid). Check [GitHub LFS pricing](https://docs.github.com/en/billing/managing-billing-for-git-large-file-storage/about-billing-for-git-large-file-storage).
-
-#### Option 2: External Hosting (Recommended for Very Large Files)
-
-For files larger than 100MB or to avoid LFS costs, host files externally:
-
-1. Google Drive / Dropbox: Upload files and share download links
-2. Cloud Storage: Use AWS S3, Google Cloud Storage, or Azure Blob Storage
-3. Hugging Face Hub: For model files, use [Hugging Face Model Hub](https://huggingface.co/models)
-
-Then document download links in `SETUP_GUIDE.md` or a `LARGE_FILES.md` file.
-
-#### Option 3: Manual Addition (Current Approach)
-
-Currently, large files are excluded. Users must add them manually after cloning:
-
-- Database files (`.db`, `.sqlite`): Place in `1-Data/`
-- Model files (`.joblib`, `.pkl`, `.safetensors`, `.bin`): Place in `3-Model_Training/`
-- Large CSV files: Place in `1-Data/`
-- Log files (`.jsonl`): Generated at runtime in `4-LangGraph/4.0-LangGraph_Logs/`
-
-See `SETUP_GUIDE.md` for detailed instructions.
-
-### Directory Structure
-
-The code expects the following directory structure relative to `BASE_PATH`:
+## Repository Contents
 
 ```
-BASE_PATH/
-├── 1-Data/
-│   └── ED_Simulated_Database_Fixed.db
-├── 3-Model_Training/
-│   ├── 3.1-Traditional_ML/
-│   │   └── 3.1.0-Traditional_ML_Artifacts/
-│   │       ├── gb_model.joblib
-│   │       ├── ml_preprocessor.joblib
-│   │       └── ml_feature_columns.json
-│   └── 3.2-LLM_Classification/
-│       └── 3.2.0-FineTune_OpenBioLLM/
-│           └── OpenBioLLM_Final/
-└── 4-LangGraph/
-    └── 4.0-LangGraph_Logs/
+├── 1-Data/                      # Synthetic ED dataset (de-identified)
+├── 2-PreWorkflow_Dataset_Prep/  # Notebooks for data cleaning & integration
+├── 3-Model_Training/            # ML and LLM training artifacts (not all uploaded)
+│   ├── 3.1-Traditional_ML/      # Gradient Boosting classifier
+│   └── 3.2-LLM_Classification/  # Fine-tuned OpenBioLLM notebooks
+├── 4-LangGraph/                 # Agentic workflow notebooks
+│   ├── 4.0-LangGraph_Logs/      # Execution traces
+│   └── 4.1-LangGraph_Agent_with_Reasoning.ipynb
+├── 5-Evaluation_Reports/        # Confusion matrices, metrics, plots
+└── README.md                    # (this file)
 ```
 
-## Configuration
+---
 
-Configuration is managed in `er_agentic_workflow/config/settings.py`. You can:
+## Methodology
 
-1. Set `BASE_PATH` environment variable
-2. Modify paths in the config file
-3. Use `Config.from_env(base_path="/your/path")` programmatically
+### 1. Multisource Inputs
+Our system integrates four distinct information sources:
 
-## Documentation
+| Modality | Example Features | Strength |
+|---------|------------------|----------|
+| **Structured vitals** | HR, BP, RR, temp, SpO₂ | High signal for physiological severity |
+| **Unstructured triage notes** | Free-text written by nurses | Rich contextual clinical reasoning |
+| **ESI score** | 1–5 emergency severity scale | Clinically validated triage heuristic |
+| **Human note (optional)** | Real-time clinician context | Overwrite or augment model reasoning |
 
-- Setup Guide: See `SETUP_GUIDE.md` for post-clone setup instructions
-- Conversion Guide: See `er_agentic_workflow/CONVERSION_GUIDE.md`
-- Extraction Status: See `er_agentic_workflow/EXTRACTION_STATUS.md`
-- Quick Start: See `er_agentic_workflow/QUICK_START.md`
+---
 
-## Evaluation
+## 2. Agentic Architecture
 
-The evaluation script is in the notebook `4-LangGraph/4.1.4-LangGraph_Agent_with_Reasoning-Optimal_Threshold_Finder.ipynb` (cells 38-48). This will be extracted to `er_agentic_workflow/src/evaluation/evaluate.py` in a future update.
+A multi-stage agent graph is constructed using **LangGraph**, enabling controlled interaction between ML, LLM, and human agents.
 
-## License
+![workflow](https://ik.imagekit.io/monicako/graph.png)
 
-[Add your license here]
+### Workflow Summary
+
+1. **Severity Gate** - custimized clinical rules trigger auto-admission.  
+2. **Parallel Model Execution** — ML classifier, LLM classifier, and human context operate simultaneously.  
+3. **Fusion Module** — integrates outputs into a unified probability + rationale.  
+4. **Confidence Check** — low-confidence predictions escalate to human review.  
+5. **Finalization** — outputs decision, probability, rationale, and trace log.  
+
+---
+
+## Experimental Setup
+
+- **Dataset size:** 4,200 synthetic ED visits  
+- **Train/test split:** 80/20 stratified  
+- **Models used:** Gradient Boosting + fine-tuned OpenBioLLM-8B  
+- **Metrics evaluated:** Precision, Recall, F1, AUC, confusion matrices  
+
+---
+
+## Results
+
+### Baseline vs Agent Models
+
+| Model | Precision | Recall | F1 |
+|-------|-----------|--------|-----|
+| Gradient Boosting | 0.35 | 0.11 | 0.17 |
+| Fine-tuned OpenBioLLM | 0.34 | 0.32 | 0.33 |
+| **Agent (No Reasoning)** | 0.58 | 0.52 | 0.55 |
+| **Agent (Reasoning Enabled)** | **0.55** | **0.64** | **0.59** |
+
+### Performance Gains
+- **+26% Admit F1 score**  
+- **+8% accuracy**  
+- **+21% AUC**  
+
+---
+
+## Key Contributions
+
+- **Multimodal clinical fusion**  
+- **Agentic reasoning framework**  
+- **Human-in-the-loop override and context injection**  
+- **Improved sensitivity and fairness**  
+- **Transparent, auditable decision traces**  
+
+---
+
+## Usage
+
+Since the repository is currently notebook-driven, usage follows:
+
+```
+2-PreWorkflow_Dataset_Prep/        → data preparation
+3-Model_Training/                  → ML & LLM training
+4-LangGraph/                       → run agentic workflow
+5-Evaluation_Reports/              → view metrics
+```
+
+---
+
+## Large Files
+
+Model checkpoints (e.g., OpenBioLLM finetuned weights) and databases exceed GitHub limits and are not included.
+
+---
 
 ## Contributors
 
-[Add contributors here]
+- Cassandra Chen  
+- Monica Ko  
+- Jane Lee  
+- Alvin Yao  
+- Faculty Advisor: Dr. Utku Pamuksuz 
